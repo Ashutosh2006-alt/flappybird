@@ -228,7 +228,7 @@ function draw() {
     }
     //displaying click for restart;
     textSize(20);
-    stroke("white");
+    stroke("black");
     fill("black");
     text("'click to restart'",width/2-60,height-300);
   }
