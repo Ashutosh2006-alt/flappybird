@@ -37,7 +37,6 @@ function preload() {
   bird_flying = loadAnimation("f1.png", "f2.png", "f3.png", "f4.png");
 
   //this is the sound section.
-  loopSound = loadSound("loop.wav");
   jumpSound = loadSound("jump.wav");
   hitSound = loadSound("hit.wav");
 }
@@ -46,9 +45,6 @@ function preload() {
 function setup() {
   //creating a compatable screen for the game(playable for every screen).
   createCanvas(windowWidth, windowHeight);
-  
-  //making loop sound for the game.
-  loopSound.loop();
 
   //creating the ground for the game.
   ground = createSprite(width / 2, height + 50);
@@ -76,12 +72,12 @@ function setup() {
   //creating logo for the game.
   logo = createSprite(width / 2, height / 2 - 200);
   logo.addImage(logoImg);
-  logo.scale = 0.7;
+  logo.scale = 0.5;
 
   //creating gameOver for the game
   gameOver = createSprite(width/2,height/2);
   gameOver.addImage(gameOverImg);
-  gameOver.scale = 0.15;
+  gameOver.scale = 0.10;
 
   //creating edges for the game.
   edges = createEdgeSprites();
@@ -214,7 +210,7 @@ function draw() {
     invisibleGroup.setLifetimeEach(-1);
 
     //if we press mouse then we will restart the game;
-    if(mouseIsPressed){ 
+    if(touches.length > 0|| mouseIsPressed){ 
       bird.addAnimation("flying", bird_flying);
       pipeGroup.destroyEach();
       invisibleGroup.destroyEach();
@@ -227,11 +223,12 @@ function draw() {
       back.velocityX = -0.8;
       back1.velocityX = -0.8;
       ground.velocityX = -8;
+      touches = [];
       gameState = PLAY;
     }
     //displaying click for restart;
     textSize(20);
-    stroke("black");
+    stroke("white");
     fill("black");
     text("'click to restart'",width/2-60,height-300);
   }
